@@ -1,0 +1,16 @@
+/* TODO general sidebar styles */
+.sidebar {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+}
+
+/* TODO expanded styles */
+.app-sidebar.expanded {
+    /* width: ??? */
+}
+
+/* TODO collapsed styles */
+.app-sidebar.collapsed {
+    /* width: ??? */
+}
