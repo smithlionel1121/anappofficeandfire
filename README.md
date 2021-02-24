@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Create a directory to clone this repository into.
+
+* Clone this repo: `git clone https://github.com/BrandwatchLtd/ysys-app.git`
+
+* Navigate into the app: `cd ysys-app`
+
+* If you don't already have it, install yarn: `npm install --global yarn`
+
+* Make sure you have a version of Node >= `10.14.2`, to check this, run `node -v`. If you need to upgrade, go to:
+https://nodejs.org/en/download and download the appropriate installer.
+
+* Install the dependencies: `yarn install`
+
+* Start the app: `yarn start`
+
+* Navigate to `localhost:3000` to view the app.
 
 ## Available Scripts
 
