@@ -1,14 +1,29 @@
 # Getting Started
 
-* Create a directory to clone this repository into.
+## Git stuff
+* Choose one member of your team to fork this repository into their github account by clicking the fork button. Or if you have a team account, use that. This fork will be considered the "main" repository.
 
-* Clone this repo: `git clone https://github.com/BrandwatchLtd/ysys-app.git`
+* Once that's done, get each member to clone the main repo: `git clone https://github.com/{ACCOUNT_NAME}/{REPO_NAME}.git`
 
-* Navigate into the app: `cd ysys-app`
+* To contribute to your project, we recommend this common pattern:
+  - Checkout the main branch locally: `git checkout main`
+  - Make sure this is up-to-date with the main remote branch: `git pull --rebase`
+  - Make a new branch to do your work on: `git checkout -b my-new-feature-branch`
+  - Write your code
+  - When you're ready to commit your code, add the files you want to your commit. Use `git status` to check which files have been modified and/or added. To add files, use `git add {FILE_NAME}`. Chances are all your edits will be within `src`, so to speed things up you can use `git add src/`.
+  - Commit the changes with a message: `git commit -m "added sidebar feature"`
+  - Push your changes to your _remote_ branch: `git push origin my-new-feature-branch`
+  - If that branch is ready to be merged into the main branch, visit it on github.com and open a pull request.
+  - Make sure all the changes make sense and that there are no conflicts, then merge your new feature!
 
-* If you don't already have it, install yarn: `npm install --global yarn`
+## Development stuff
+Once you have cloned the repo into a specific directory:
 
-* Make sure you have a version of Node >= `10.14.2`, to check this, run `node -v`. If you need to upgrade, go to:
+* Navigate into the app directory: `cd {PATH_TO_APP}/ysys-app` - `{PATH_TO_APP}` could be something like `C:/Users/Jon Snow/Desktop`
+
+* If you have not used Create React App before:
+  - If you don't already have it, install yarn: `npm install --global yarn`
+  - Make sure you have a version of Node >= `10.14.2`, to check this, run `node -v`. If you need to upgrade, go to:
 https://nodejs.org/en/download and download the appropriate installer.
 
 * Install the dependencies: `yarn install`
