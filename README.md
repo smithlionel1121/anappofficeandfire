@@ -3,7 +3,7 @@
 ## Git stuff
 * Choose one member of your team to fork this repository into their github account by clicking the fork button. Or if you have a team account, use that. This fork will be considered the "main" repository.
 
-* Once that's done, get each member to clone the main repo: `git clone https://github.com/{ACCOUNT_NAME}/{REPO_NAME}.git`
+* Once that's done, get each member to clone the main repo: `git clone https://github.com/{ACCOUNT_NAME}/ysys-app.git`
 
 * To contribute to your project, we recommend this common pattern:
   - Checkout the main branch locally: `git checkout main`
