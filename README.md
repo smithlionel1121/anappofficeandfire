@@ -32,6 +32,30 @@ https://nodejs.org/en/download and download the appropriate installer.
 
 * Navigate to `localhost:3000` to view the app.
 
+## Publishing stuff
+
+In order to publish stuff to github pages, you'll need to follow a few steps:
+#### Within your app:
+* Within your project directory, install `gh-pages` by running `yarn add gh-pages --save-dev`.
+* Add `"homepage": "http://{ACCOUNT_NAME}.github.io/ysys-app"` in your `package.json` (at the top level)
+* Within the `"scripts"`, add:
+```
+"scripts": {
+// ....
+  "deploy": "gh-pages -d build",
+// ....
+}
+```
+* When your app is in a state that you're happy with, build it using `yarn build`
+* Then deploy this build to github using `yarn deploy`
+* You will then be able to see your app on the homepage URL you assigned earlier. 
+
+#### Within your repository on github.com
+
+* After your first deployment (the step above), on the main repository screen, go to the Settings tab
+* Scroll down to GitHub Pages section and change the branch to `gh-pages`
+* This will take a few minutes to update, but eventually your app will be deployed!
+
 ## Available Scripts
 
 In the project directory, you can run:
