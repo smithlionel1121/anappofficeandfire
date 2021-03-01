@@ -1,6 +1,7 @@
 /* TODO add feed styles */
 .feed {
-    margin: 10px;
+    margin: 0px;
     padding: 10px;
-    border: 1px solid green;
+    border-top: thin ridge #ccc;
+    border-left: thin ridge #ccc;
 }

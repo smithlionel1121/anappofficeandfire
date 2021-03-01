@@ -1,7 +1,28 @@
 /* TODO add some general header styles */
 
 .header {
-    margin: 10px;
+    margin: 0px;
     padding: 10px;
-    border: 1px solid red;
+    border-bottom: thin ridge #ccc;
+}
+
+.header-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 0em 1em;
+    grid-template-areas: "headerButton headerTitle headerSearch";
+    align-items: center;
+}
+
+.headerTitle {
+    grid-area: headerTitle;
+    text-align: center;
+}
+
+.headerButton {
+    grid-area: headerButton;
+}
+
+.headerSearch {
+    grid-area: headerSearch;
 }

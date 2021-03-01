@@ -9,5 +9,12 @@
 //  customise function (or create another function) to retrieve extra data based on configuration (number of results/pages/search
 
 // see cheat sheet for fetch example.
-export const getData = () => {
+export const getData = async dataChoice => {
+    const res = await fetch(
+        `https://www.anapioficeandfire.com/api/${dataChoice}?page=1&pageSize=10`
+    );
+    const headers = res.headers.get("link");
+    console.log(headers);
+    const data = await res.json();
+    return data;
 };

@@ -1,11 +1,19 @@
-import './App.css';
-import React from 'react';
-import { HeaderComponent } from './components/Header/HeaderComponent';
-import { SidebarComponent } from './components/Sidebar/SidebarComponent';
-import { FeedComponent } from './components/Feed/FeedComponent';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import { HeaderComponent } from "./components/Header/HeaderComponent";
+import { SidebarComponent } from "./components/Sidebar/SidebarComponent";
+import { FeedComponent } from "./components/Feed/FeedComponent";
+import { getData } from "./api/api";
 
 function App() {
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [dataChoice, setDataChoice] = useState("characters");
+    const [feedResults, setFeedResults] = useState(dataChoice);
+    const [isLoading, setIsLoading] = useState(false);
 
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
     // TODO - this is the "main" component for our app, and it will include all the global state that we care about
     //  This should include things like:
     //  * the sidebar expanded state
@@ -27,17 +35,39 @@ function App() {
     // TODO - add in a feedResults state/setState
     // (See cheat sheet for useState example)
 
-
     // TODO - import getData() from api (you will need to write this function)
     //         and call it here (setting the results to the feedResults)
     // TODO [STRETCH] - implement loading state and pass to FeedComponent
 
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
+
+    useEffect(async () => {
+        setIsLoading(true);
+        const data = await getData(dataChoice);
+        setFeedResults(data);
+        setIsLoading(false);
+    }, [dataChoice]);
+
+    const gridClassName = sidebarOpen
+        ? "grid-container"
+        : "grid-container-closed";
     return (
-        <div className="app">
-            <HeaderComponent />
-            <SidebarComponent />
-            <FeedComponent />
+        <div className={`app ${gridClassName}`}>
+            <HeaderComponent
+                sidebarOpen={sidebarOpen}
+                toggleSidebar={toggleSidebar}
+            />
+            <SidebarComponent
+                dataChoice={dataChoice}
+                setDataChoice={setDataChoice}
+                sidebarOpen={sidebarOpen}
+            />
+            <FeedComponent
+                dataChoice={dataChoice}
+                getData={getData}
+                feedResults={feedResults}
+                isLoading={isLoading}
+            />
         </div>
     );
 }

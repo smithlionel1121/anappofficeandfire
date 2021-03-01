@@ -1,8 +1,9 @@
 /* TODO general sidebar styles */
 .sidebar {
     padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
+    margin: 0px;
+    border-right: thin ridge #ccc;
+    border-top: thin ridge #ccc;
 }
 
 /* TODO expanded styles */
@@ -12,5 +13,6 @@
 
 /* TODO collapsed styles */
 .app-sidebar.collapsed {
+    display: none;
     /* width: ??? */
 }

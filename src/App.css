@@ -1,6 +1,42 @@
 .app {
-  height: 100%;
-  margin: 10px;
-  padding: 10px;
-  border: 1px dotted indigo;
+    /* height: 100%; */
+    /* margin: 10px; */
+    /* padding: 10px; */
+    /* border: 1px dotted indigo; */
+
+    min-height: 100vh;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "header header header header"
+        "sidebar feed feed feed"
+        "sidebar feed feed feed";
+}
+
+.grid-container-closed {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.8fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "header header header header"
+        "feed feed feed feed"
+        "feed feed feed feed";
+}
+
+.header {
+    grid-area: header;
+}
+
+.feed {
+    grid-area: feed;
+}
+
+.sidebar {
+    grid-area: sidebar;
 }
