@@ -1,19 +1,11 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { HeaderComponent } from "./components/Header/HeaderComponent";
 import { SidebarComponent } from "./components/Sidebar/SidebarComponent";
 import { FeedComponent } from "./components/Feed/FeedComponent";
-import { getData } from "./api/api";
+import AppState from "./context/AppState";
 
 function App() {
-    const [sidebarOpen, setSidebarOpen] = useState(true);
-    const [dataChoice, setDataChoice] = useState("characters");
-    const [feedResults, setFeedResults] = useState(dataChoice);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
     // TODO - this is the "main" component for our app, and it will include all the global state that we care about
     //  This should include things like:
     //  * the sidebar expanded state
@@ -41,34 +33,12 @@ function App() {
 
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
 
-    useEffect(async () => {
-        setIsLoading(true);
-        const data = await getData(dataChoice);
-        setFeedResults(data);
-        setIsLoading(false);
-    }, [dataChoice]);
-
-    const gridClassName = sidebarOpen
-        ? "grid-container"
-        : "grid-container-closed";
     return (
-        <div className={`app ${gridClassName}`}>
-            <HeaderComponent
-                sidebarOpen={sidebarOpen}
-                toggleSidebar={toggleSidebar}
-            />
-            <SidebarComponent
-                dataChoice={dataChoice}
-                setDataChoice={setDataChoice}
-                sidebarOpen={sidebarOpen}
-            />
-            <FeedComponent
-                dataChoice={dataChoice}
-                getData={getData}
-                feedResults={feedResults}
-                isLoading={isLoading}
-            />
-        </div>
+        <AppState>
+            <HeaderComponent />
+            <SidebarComponent />
+            <FeedComponent />
+        </AppState>
     );
 }
 

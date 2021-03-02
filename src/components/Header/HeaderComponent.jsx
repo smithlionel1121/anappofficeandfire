@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./HeaderComponent.css";
+
+import AppContext from "../../context/app-context";
 
 import {
     Button,
@@ -10,8 +12,8 @@ import {
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
-export const HeaderComponent = ({ toggleSidebar, sidebarOpen }) => {
-    // const buttonText = sidebarOpen ? "Hide Filters" : "Show Filters";
+export const HeaderComponent = () => {
+    const { toggleSidebar, sidebarOpen } = useContext(AppContext);
     return (
         <header className={"header header-grid"}>
             {/* TODO [STRETCH] - add in any controls that you'd like in your header
@@ -23,7 +25,7 @@ export const HeaderComponent = ({ toggleSidebar, sidebarOpen }) => {
                     shape="rectangle"
                     size="medium"
                     variant="primary"
-                    onClick={toggleSidebar}
+                    onClick={() => toggleSidebar()}
                 >
                     {sidebarOpen ? "Hide Filters" : "Show Filters"}
                 </Button>

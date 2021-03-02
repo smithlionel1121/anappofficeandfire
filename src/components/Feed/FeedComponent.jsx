@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./FeedComponent.css";
 
-import {
-    Button,
-    CardList,
-    Pagination,
-    ProgressInfinite,
-} from "@brandwatch/axiom-components";
+import AppContext from "../../context/app-context";
+
+import { CardList, ProgressInfinite } from "@brandwatch/axiom-components";
 import { CharacterCard } from "../STRETCH_Cards/CharacterCard";
 import { HouseCard } from "../STRETCH_Cards/HouseCard";
 import { BookCard } from "../STRETCH_Cards/BookCard";
 // TODO - make sure FeedComponent is expecting the right props!
-export const FeedComponent = ({ isLoading, dataChoice, feedResults }) => {
+export const FeedComponent = () => {
+    const { feedResults, isLoading, dataChoice } = useContext(AppContext);
+
     let list;
     switch (dataChoice) {
         case "characters":

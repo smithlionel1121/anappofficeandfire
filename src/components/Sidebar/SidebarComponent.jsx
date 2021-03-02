@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SidebarComponent.css";
+
+import AppContext from "../../context/app-context";
 
 import { RadioButtonGroup, RadioButton } from "@brandwatch/axiom-components";
 
 // TODO - make sure SidebarComponent is expecting the right props!
-export const SidebarComponent = props => {
+export const SidebarComponent = () => {
     // TODO - reflect expanded/collapsed state in sidebar's className
     // TODO - make sure the classNames in the SidebarComponent.css match up with the classes you choose!
-    const { sidebarOpen, dataChoice, setDataChoice } = props;
+    const { sidebarOpen, changeOption, dataChoice } = useContext(AppContext);
 
-    const onSelect = () => {};
 
     const sidebarStatus = sidebarOpen
         ? "app-sidebar expanded"
@@ -28,7 +29,7 @@ export const SidebarComponent = props => {
             <RadioButtonGroup>
                 <RadioButton
                     name="data"
-                    onClick={() => setDataChoice("characters")}
+                    onClick={() => changeOption("characters")}
                     checked={dataChoice === "characters"}
                     readOnly
                 >
@@ -36,7 +37,7 @@ export const SidebarComponent = props => {
                 </RadioButton>
                 <RadioButton
                     name="data"
-                    onClick={() => setDataChoice("houses")}
+                    onClick={() => changeOption("houses")}
                     checked={dataChoice === "houses"}
                     readOnly
                 >
@@ -44,7 +45,7 @@ export const SidebarComponent = props => {
                 </RadioButton>
                 <RadioButton
                     name="data"
-                    onClick={() => setDataChoice("books")}
+                    onClick={() => changeOption("books")}
                     checked={dataChoice === "books"}
                     readOnly
                 >
