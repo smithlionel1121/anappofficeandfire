@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/anappoficeandfire/static/css/main.1e5ffc92.chunk.css",
+    "main.js": "/anappoficeandfire/static/js/main.2191248d.chunk.js",
+    "main.js.map": "/anappoficeandfire/static/js/main.2191248d.chunk.js.map",
+    "runtime-main.js": "/anappoficeandfire/static/js/runtime-main.a136d9e8.js",
+    "runtime-main.js.map": "/anappoficeandfire/static/js/runtime-main.a136d9e8.js.map",
+    "static/css/2.d7d5ddf5.chunk.css": "/anappoficeandfire/static/css/2.d7d5ddf5.chunk.css",
+    "static/js/2.667e7f1c.chunk.js": "/anappoficeandfire/static/js/2.667e7f1c.chunk.js",
+    "static/js/2.667e7f1c.chunk.js.map": "/anappoficeandfire/static/js/2.667e7f1c.chunk.js.map",
+    "index.html": "/anappoficeandfire/index.html",
+    "static/css/2.d7d5ddf5.chunk.css.map": "/anappoficeandfire/static/css/2.d7d5ddf5.chunk.css.map",
+    "static/css/main.1e5ffc92.chunk.css.map": "/anappoficeandfire/static/css/main.1e5ffc92.chunk.css.map",
+    "static/js/2.667e7f1c.chunk.js.LICENSE.txt": "/anappoficeandfire/static/js/2.667e7f1c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a136d9e8.js",
+    "static/css/2.d7d5ddf5.chunk.css",
+    "static/js/2.667e7f1c.chunk.js",
+    "static/css/main.1e5ffc92.chunk.css",
+    "static/js/main.2191248d.chunk.js"
+  ]
+}
