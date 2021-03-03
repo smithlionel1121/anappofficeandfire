@@ -8,13 +8,33 @@
 // TODO [STRETCH]
 //  customise function (or create another function) to retrieve extra data based on configuration (number of results/pages/search
 
-// see cheat sheet for fetch example.
-export const getData = async dataChoice => {
-    const res = await fetch(
-        `https://www.anapioficeandfire.com/api/${dataChoice}?page=1&pageSize=10`
-    );
-    const headers = res.headers.get("link");
-    console.log(headers);
+// // see cheat sheet for fetch example.
+function parseHeaders(res) {
+    return res.headers
+        .get("link")
+        .split(",")
+        .reduce((acc, link) => {
+            const props = /^\<(.+)\>; rel="(.+)"$/.exec(link.trim());
+            if (!props) {
+                console.warn("no match");
+                return acc;
+            }
+            acc[props[2]] = props[1];
+            return acc;
+        }, {});
+}
+
+export const getData = async (dataChoice, pageInfo, addParams) => {
+    let url = `https://www.anapioficeandfire.com/api/${dataChoice}?page=${pageInfo.current}&pageSize=${pageInfo.size}`;
+    if (addParams) {
+        for (const [key, value] of Object.entries(addParams)) {
+            if (value) {
+                url += `&${key}=${value}`;
+            }
+        }
+    }
+    const res = await fetch(url);
+    const links = parseHeaders(res);
     const data = await res.json();
-    return data;
+    return [data, links];
 };

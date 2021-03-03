@@ -1,7 +1,18 @@
 /* TODO add feed styles */
 .feed {
     margin: 0px;
-    padding: 10px;
-    border-top: thin ridge #ccc;
-    border-left: thin ridge #ccc;
+    padding: 2rem;
+}
+
+.card-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+@media (max-width: 599px) {
+    .feed {
+        margin: 0px;
+        padding: 0.5rem;
+    }
 }

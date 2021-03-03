@@ -8,10 +8,10 @@
 
 .header-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0em 1em;
     grid-template-areas: "headerButton headerTitle headerSearch";
-    align-items: center;
+    align-items: baseline;
 }
 
 .headerTitle {

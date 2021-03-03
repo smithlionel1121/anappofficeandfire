@@ -1,13 +1,26 @@
 import React from "react";
 import "./Card.css";
 
-import { Card, CardContent, Heading } from "@brandwatch/axiom-components";
+import {
+    Card,
+    CardContent,
+    Heading,
+    List,
+    ListItem,
+} from "@brandwatch/axiom-components";
 
 // TODO - create a component which displays information about Books
 
 // TODO - make sure BookCard is expecting the right props!
 export const BookCard = ({ book }) => {
-    const { name, authors } = book;
+    const {
+        name,
+        authors,
+        publisher,
+        mediaType,
+        numberOfPages,
+        country,
+    } = book;
     return (
         <Card
             className="card"
@@ -19,8 +32,34 @@ export const BookCard = ({ book }) => {
         >
             <CardContent>
                 {name && <Heading textStrong>{name}</Heading>}
-                <hr />
-                {authors && <span>{`By ${authors[0]}`}</span>}
+                <List style="none">
+                    <hr />
+                    {authors && (
+                        <ListItem>
+                            <b>By:</b> <i>{authors[0]}</i>
+                        </ListItem>
+                    )}
+                    {publisher && (
+                        <ListItem>
+                            <b>Publisher:</b> <i>{publisher}</i>
+                        </ListItem>
+                    )}
+                    {mediaType && (
+                        <ListItem>
+                            <b>Media Type:</b> <i>{mediaType}</i>
+                        </ListItem>
+                    )}
+                    {numberOfPages && (
+                        <ListItem>
+                            <b>Number of Pages:</b> <i>{numberOfPages}</i>
+                        </ListItem>
+                    )}
+                    {country && (
+                        <ListItem>
+                            <b>Country:</b> <i>{country}</i>
+                        </ListItem>
+                    )}
+                </List>
             </CardContent>
         </Card>
     );

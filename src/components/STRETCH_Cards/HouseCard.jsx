@@ -1,13 +1,19 @@
 import React from "react";
 import "./Card.css";
 
-import { Card, CardContent, Heading } from "@brandwatch/axiom-components";
+import {
+    Card,
+    CardContent,
+    Heading,
+    List,
+    ListItem,
+} from "@brandwatch/axiom-components";
 
 // TODO - create a component which displays information about Houses
 
 // TODO - make sure HouseCard is expecting the right props!
 export const HouseCard = ({ house }) => {
-    const { name, region } = house;
+    const { name, region, seats } = house;
     return (
         <Card
             className="card"
@@ -19,8 +25,20 @@ export const HouseCard = ({ house }) => {
         >
             <CardContent>
                 {name && <Heading textStrong>{name}</Heading>}
-                <hr />
-                {region && <span>{region}</span>}
+
+                <List style="none">
+                    <hr />
+                    {region && (
+                        <ListItem>
+                            <b>Region:</b> <i>{region}</i>
+                        </ListItem>
+                    )}
+                    {seats && (
+                        <ListItem>
+                            <b>Seats:</b> <i>{seats}</i>
+                        </ListItem>
+                    )}
+                </List>
             </CardContent>
         </Card>
     );

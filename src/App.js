@@ -36,8 +36,10 @@ function App() {
     return (
         <AppState>
             <HeaderComponent />
-            <SidebarComponent />
-            <FeedComponent />
+            <div className="main">
+                <SidebarComponent />
+                <FeedComponent />
+            </div>
         </AppState>
     );
 }

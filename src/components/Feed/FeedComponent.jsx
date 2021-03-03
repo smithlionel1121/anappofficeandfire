@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import "./FeedComponent.css";
 
 import AppContext from "../../context/app-context";
 
-import { CardList, ProgressInfinite } from "@brandwatch/axiom-components";
+import {
+    CardList,
+    ProgressInfinite,
+    Pagination,
+} from "@brandwatch/axiom-components";
 import { CharacterCard } from "../STRETCH_Cards/CharacterCard";
 import { HouseCard } from "../STRETCH_Cards/HouseCard";
 import { BookCard } from "../STRETCH_Cards/BookCard";
 // TODO - make sure FeedComponent is expecting the right props!
 export const FeedComponent = () => {
-    const { feedResults, isLoading, dataChoice } = useContext(AppContext);
+    const {
+        feedResults,
+        isLoading,
+        dataChoice,
+        page,
+        pagination,
+        changePage,
+    } = useContext(AppContext);
 
     let list;
     switch (dataChoice) {
@@ -63,7 +74,19 @@ export const FeedComponent = () => {
     const display = isLoading ? (
         <ProgressInfinite size="large" sizeRem="18rem" color="white" />
     ) : (
-        <CardList>{list}</CardList>
+        <Fragment>
+            {/* <CardList></CardList> */}
+            <div className="card-list">{list}</div>
+            {pagination && (
+                <Pagination
+                    currentPage={page.current}
+                    onPageChange={newPage =>
+                        changePage({ ...page, current: newPage })
+                    }
+                    totalPages={pagination.lastPage}
+                />
+            )}
+        </Fragment>
     );
 
     return (

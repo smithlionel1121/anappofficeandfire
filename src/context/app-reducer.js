@@ -3,6 +3,9 @@ import {
     CHANGE_OPTION,
     TOGGLE_LOADING,
     UPDATE_RESULTS,
+    UPDATE_PAGINATION,
+    CHANGE_PAGE,
+    CHANGE_PARAMS,
 } from "./app-actions";
 
 export default function reducer(state, action) {
@@ -15,6 +18,12 @@ export default function reducer(state, action) {
             return { ...state, isLoading: action.payload };
         case UPDATE_RESULTS:
             return { ...state, feedResults: action.payload };
+        case UPDATE_PAGINATION:
+            return { ...state, pagination: action.payload };
+        case CHANGE_PAGE:
+            return { ...state, page: action.payload };
+        case CHANGE_PARAMS:
+            return { ...state, params: action.payload };
         default:
             return state;
     }
