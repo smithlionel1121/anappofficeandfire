@@ -20,6 +20,7 @@ export const BookCard = ({ book }) => {
         mediaType,
         numberOfPages,
         country,
+        released,
     } = book;
     return (
         <Card
@@ -52,6 +53,12 @@ export const BookCard = ({ book }) => {
                     {numberOfPages && (
                         <ListItem>
                             <b>Number of Pages:</b> <i>{numberOfPages}</i>
+                        </ListItem>
+                    )}
+                    {released && (
+                        <ListItem>
+                            <b>Release Date:</b>
+                            <i>{new Date(released).toLocaleDateString()}</i>
                         </ListItem>
                     )}
                     {country && (

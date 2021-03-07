@@ -7,13 +7,18 @@ import {
     Heading,
     List,
     ListItem,
+    Lozenge,
 } from "@brandwatch/axiom-components";
 
 // TODO - create a component which displays information about Characters
 
 // TODO - make sure CharacterCard is expecting the right props!
-export const CharacterCard = ({ character }) => {
+export const CharacterCard = ({ character, params }) => {
     const { name, aliases, gender, culture, playedBy } = character;
+    let isAlive;
+    if (params.hasOwnProperty("isAlive")) {
+        isAlive = params.isAlive;
+    }
     return (
         <Card
             className="card"
@@ -47,6 +52,7 @@ export const CharacterCard = ({ character }) => {
                             <b>Played By:</b> <i>{playedBy}</i>
                         </ListItem>
                     )}
+                    {isAlive && <Lozenge color="terra-form">Is Alive</Lozenge>}
                 </List>
             </CardContent>
         </Card>

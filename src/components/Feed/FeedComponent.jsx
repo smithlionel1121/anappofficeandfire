@@ -18,6 +18,7 @@ export const FeedComponent = () => {
         isLoading,
         dataChoice,
         page,
+        params,
         pagination,
         changePage,
     } = useContext(AppContext);
@@ -30,6 +31,7 @@ export const FeedComponent = () => {
                 feedResults.map(result => (
                     <CharacterCard
                         character={result}
+                        params={params}
                         key={result.url.slice(
                             result.url.lastIndexOf(
                                 "/",
@@ -75,7 +77,6 @@ export const FeedComponent = () => {
         <ProgressInfinite size="large" sizeRem="18rem" color="white" />
     ) : (
         <Fragment>
-            {/* <CardList></CardList> */}
             <div className="card-list">{list}</div>
             {pagination && (
                 <Pagination

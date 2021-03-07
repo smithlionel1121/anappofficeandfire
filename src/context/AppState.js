@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from "react";
+import React, { useReducer, useEffect } from "react";
 import AppContext from "./app-context";
 import reducer from "./app-reducer";
 
@@ -97,7 +97,8 @@ const AppState = props => {
         const lastPage = getPageCount(links.last);
         const pagination = { ...links, lastPage };
         updatePagination(pagination);
-        changeParams({});
+        const { name, ...rest } = params;
+        changeParams(rest);
         toggleLoading(false);
     }, [dataChoice, page]);
 
@@ -110,6 +111,7 @@ const AppState = props => {
                 feedResults,
                 pagination,
                 page,
+                params,
                 changePage,
                 changeParams,
                 toggleSidebar,

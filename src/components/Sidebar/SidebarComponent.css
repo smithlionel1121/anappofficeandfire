@@ -3,7 +3,6 @@
     padding: 2rem;
     margin: 0px;
     border-right: thin ridge #ccc;
-    border-top: thin ridge #ccc;
 }
 
 /* TODO expanded styles */
@@ -13,10 +12,26 @@
 
 /* TODO collapsed styles */
 .app-sidebar.collapsed {
-    display: none;
+    /* display: none; */
     /* width: ??? */
 }
 
+.collapsed {
+    display: none;
+}
+
 .dropdown {
-    margin-top: 3rem;
+    margin-top: 1rem;
+}
+
+.data-filters {
+    margin-top: 4rem;
+}
+
+.filter-group {
+    margin-top: 1rem;
+}
+
+.filter-options {
+    padding-left: 2rem;
 }
