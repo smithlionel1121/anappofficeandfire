@@ -14,7 +14,7 @@ function parseHeaders(res) {
         .get("link")
         .split(",")
         .reduce((acc, link) => {
-            const props = /^\<(.+)\>; rel="(.+)"$/.exec(link.trim());
+            const props = /^<(.+)>; rel="(.+)"$/.exec(link.trim());
             if (!props) {
                 console.warn("no match");
                 return acc;

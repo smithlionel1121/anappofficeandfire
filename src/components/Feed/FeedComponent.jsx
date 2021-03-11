@@ -3,11 +3,7 @@ import "./FeedComponent.css";
 
 import AppContext from "../../context/app-context";
 
-import {
-    CardList,
-    ProgressInfinite,
-    Pagination,
-} from "@brandwatch/axiom-components";
+import { ProgressInfinite, Pagination } from "@brandwatch/axiom-components";
 import { CharacterCard } from "../STRETCH_Cards/CharacterCard";
 import { HouseCard } from "../STRETCH_Cards/HouseCard";
 import { BookCard } from "../STRETCH_Cards/BookCard";
@@ -24,53 +20,37 @@ export const FeedComponent = () => {
     } = useContext(AppContext);
 
     let list;
+    const makeKey = (url) =>
+        url.slice(url.lastIndexOf("/", url.lastIndexOf("/") - 1) + 1);
+
     switch (dataChoice) {
         case "characters":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map(result => (
+                feedResults.map((result) => (
                     <CharacterCard
                         character={result}
                         params={params}
-                        key={result.url.slice(
-                            result.url.lastIndexOf(
-                                "/",
-                                result.url.lastIndexOf("/") - 1
-                            ) + 1
-                        )}
+                        key={makeKey(result.url)}
                     />
                 ));
             break;
         case "houses":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map(result => (
-                    <HouseCard
-                        house={result}
-                        key={result.url.slice(
-                            result.url.lastIndexOf(
-                                "/",
-                                result.url.lastIndexOf("/") - 1
-                            ) + 1
-                        )}
-                    />
+                feedResults.map((result) => (
+                    <HouseCard house={result} key={makeKey(result.url)} />
                 ));
             break;
         case "books":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map(result => (
-                    <BookCard
-                        book={result}
-                        key={result.url.slice(
-                            result.url.lastIndexOf(
-                                "/",
-                                result.url.lastIndexOf("/") - 1
-                            ) + 1
-                        )}
-                    />
+                feedResults.map((result) => (
+                    <BookCard book={result} key={makeKey(result.url)} />
                 ));
             break;
+        default:
+            list = <div>No Results</div>;
     }
 
     const display = isLoading ? (
@@ -81,7 +61,7 @@ export const FeedComponent = () => {
             {pagination && (
                 <Pagination
                     currentPage={page.current}
-                    onPageChange={newPage =>
+                    onPageChange={(newPage) =>
                         changePage({ ...page, current: newPage })
                     }
                     totalPages={pagination.lastPage}

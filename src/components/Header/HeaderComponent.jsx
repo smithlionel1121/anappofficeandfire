@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "./HeaderComponent.css";
 
 import AppContext from "../../context/app-context";
@@ -18,14 +18,13 @@ export const HeaderComponent = () => {
         dataChoice,
         toggleSidebar,
         sidebarOpen,
-        params,
         page,
         changeParams,
         changePage,
     } = useContext(AppContext);
     const [text, setText] = useState("");
 
-    const onSubmit = e => {
+    const onSubmit = (e) => {
         e.preventDefault();
         changeParams({ name: text });
         changePage({ ...page, current: 1 });
@@ -60,7 +59,7 @@ export const HeaderComponent = () => {
                         // inlineLabel
                         placeholder={label}
                         aria-label="Submit"
-                        onChange={e => setText(e.target.value)}
+                        onChange={(e) => setText(e.target.value)}
                         value={text}
                     >
                         <TextInputIcon align="left" name="magnify-glass" />

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState, useEffect } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import "./SidebarComponent.css";
 
 import AppContext from "../../context/app-context";
@@ -55,7 +55,7 @@ export const SidebarComponent = () => {
         "The Vale",
     ];
 
-    const onSelect = selection => {
+    const onSelect = (selection) => {
         changeOption(selection);
         changeParams({});
         changePage({ ...page, current: 1 });
@@ -234,7 +234,7 @@ export const SidebarComponent = () => {
                         >
                             <DataPickerDropdown>
                                 <DropdownMenu>
-                                    {regions.map(region => (
+                                    {regions.map((region) => (
                                         <DropdownMenuItem
                                             key={region}
                                             onClick={() => {
@@ -355,6 +355,8 @@ export const SidebarComponent = () => {
                 </Fragment>
             );
             break;
+        default:
+        // no filters
     }
 
     const sidebarStatus = sidebarOpen
@@ -414,7 +416,7 @@ export const SidebarComponent = () => {
                     <DropdownSource>
                         <DropdownContext>
                             <DropdownMenu>
-                                {items.map(item => (
+                                {items.map((item) => (
                                     <DropdownMenuItem
                                         key={item}
                                         onClick={() =>

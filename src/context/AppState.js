@@ -14,7 +14,7 @@ import {
     CHANGE_PARAMS,
 } from "./app-actions";
 
-const AppState = props => {
+const AppState = (props) => {
     const initialState = {
         sidebarOpen: true,
         dataChoice: "characters",
@@ -32,42 +32,42 @@ const AppState = props => {
         dispatch({ type: TOGGLE_SIDEBAR });
     };
 
-    const changeOption = option => {
+    const changeOption = (option) => {
         dispatch({
             type: CHANGE_OPTION,
             payload: option,
         });
     };
 
-    const updateResults = results => {
+    const updateResults = (results) => {
         dispatch({
             type: UPDATE_RESULTS,
             payload: results,
         });
     };
 
-    const updatePagination = pagination => {
+    const updatePagination = (pagination) => {
         dispatch({
             type: UPDATE_PAGINATION,
             payload: pagination,
         });
     };
 
-    const changePage = page => {
+    const changePage = (page) => {
         dispatch({
             type: CHANGE_PAGE,
             payload: page,
         });
     };
 
-    const changeParams = params => {
+    const changeParams = (params) => {
         dispatch({
             type: CHANGE_PARAMS,
             payload: params,
         });
     };
 
-    const toggleLoading = isLoading => {
+    const toggleLoading = (isLoading) => {
         dispatch({ type: TOGGLE_LOADING, payload: isLoading });
     };
 
@@ -90,16 +90,19 @@ const AppState = props => {
         ? "grid-container"
         : "grid-container-closed";
 
-    useEffect(async () => {
-        toggleLoading(true);
-        const [data, links] = await getData(dataChoice, page, params);
-        updateResults(data);
-        const lastPage = getPageCount(links.last);
-        const pagination = { ...links, lastPage };
-        updatePagination(pagination);
-        const { name, ...rest } = params;
-        changeParams(rest);
-        toggleLoading(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            toggleLoading(true);
+            const [data, links] = await getData(dataChoice, page, params);
+            updateResults(data);
+            const lastPage = getPageCount(links.last);
+            const pagination = { ...links, lastPage };
+            updatePagination(pagination);
+            const { name, ...rest } = params;
+            changeParams(rest);
+            toggleLoading(false);
+        };
+        fetchData();
     }, [dataChoice, page]);
 
     return (
