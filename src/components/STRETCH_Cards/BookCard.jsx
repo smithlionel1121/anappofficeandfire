@@ -33,6 +33,7 @@ export const BookCard = ({ book }) => {
         >
             <CardContent>
                 {name && <Heading textStrong>{name}</Heading>}
+                {/* eslint-disable-next-line react/style-prop-object */}
                 <List style="none">
                     <hr />
                     {authors && (

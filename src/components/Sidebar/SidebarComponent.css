@@ -5,17 +5,6 @@
     border-right: thin ridge #ccc;
 }
 
-/* TODO expanded styles */
-.app-sidebar.expanded {
-    /* width: ??? */
-}
-
-/* TODO collapsed styles */
-.app-sidebar.collapsed {
-    /* display: none; */
-    /* width: ??? */
-}
-
 .collapsed {
     display: none;
 }

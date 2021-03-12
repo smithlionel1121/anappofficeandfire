@@ -30,6 +30,7 @@ export const CharacterCard = ({ character, params }) => {
         >
             <CardContent>
                 {name && <Heading textStrong>{name}</Heading>}
+                {/* eslint-disable-next-line react/style-prop-object */}
                 <List style="none">
                     <hr />
                     {aliases && (

@@ -57,7 +57,6 @@ export const HeaderComponent = () => {
             <div className="headerSearch">
                 <Form onSubmit={onSubmit}>
                     <TextInput
-                        // inlineLabel
                         placeholder={label}
                         aria-label="Submit"
                         onChange={e => setText(e.target.value)}
