@@ -13,21 +13,20 @@ export const FeedComponent = () => {
         feedResults,
         isLoading,
         dataChoice,
-        page,
         params,
         pagination,
         changePage,
     } = useContext(AppContext);
 
     let list;
-    const makeKey = (url) =>
+    const makeKey = url =>
         url.slice(url.lastIndexOf("/", url.lastIndexOf("/") - 1) + 1);
 
     switch (dataChoice) {
         case "characters":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map((result) => (
+                feedResults.map(result => (
                     <CharacterCard
                         character={result}
                         params={params}
@@ -38,14 +37,14 @@ export const FeedComponent = () => {
         case "houses":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map((result) => (
+                feedResults.map(result => (
                     <HouseCard house={result} key={makeKey(result.url)} />
                 ));
             break;
         case "books":
             list =
                 Array.isArray(feedResults) &&
-                feedResults.map((result) => (
+                feedResults.map(result => (
                     <BookCard book={result} key={makeKey(result.url)} />
                 ));
             break;
@@ -60,10 +59,11 @@ export const FeedComponent = () => {
             <div className="card-list">{list}</div>
             {pagination && (
                 <Pagination
-                    currentPage={page.current}
-                    onPageChange={(newPage) =>
-                        changePage({ ...page, current: newPage })
-                    }
+                    currentPage={params.page.current}
+                    onPageChange={newPage => {
+                        if (newPage <= pagination.lastPage)
+                            changePage({ ...params.page, current: newPage });
+                    }}
                     totalPages={pagination.lastPage}
                 />
             )}

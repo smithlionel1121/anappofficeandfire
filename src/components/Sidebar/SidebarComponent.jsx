@@ -28,7 +28,6 @@ export const SidebarComponent = () => {
         sidebarOpen,
         changeOption,
         dataChoice,
-        page,
         params,
         changePage,
         changeParams,
@@ -55,14 +54,33 @@ export const SidebarComponent = () => {
         "The Vale",
     ];
 
-    const onSelect = (selection) => {
+    const onSelect = selection => {
         changeOption(selection);
-        changeParams({});
-        changePage({ ...page, current: 1 });
+        changeParams({
+            page: { ...params.page, current: 1 },
+            filters: {},
+        });
+    };
+
+    const onFilter = newFilter => {
+        const { name, ...prevFilters } = params.filters;
+        changeParams({
+            page: { ...params.page, current: 1 },
+            filters: { ...prevFilters, ...newFilter },
+        });
+    };
+
+    const clearFilter = newFilter => {
+        changeParams({
+            page: { ...params.page, current: 1 },
+            filters: { ...newFilter },
+        });
     };
 
     function SingleDate({ label, param }) {
-        const appliedDate = params[param] ? new Date(params[param]) : null;
+        const appliedDate = params.filters[param]
+            ? new Date(params.filters[param])
+            : null;
         const [selectedDate, setSelectedDate] = useState(null);
 
         let formattedDate = null;
@@ -84,12 +102,12 @@ export const SidebarComponent = () => {
                         setSelectedDate(date);
                     }}
                     onApply={() => {
-                        let obj = params;
+                        let obj = params.filters;
                         obj[param] = new Date(selectedDate).toISOString();
                         changeParams({
-                            ...obj,
+                            page: { ...params.page, current: 1 },
+                            filters: { ...obj },
                         });
-                        changePage({ ...page, current: 1 });
                     }}
                     onCancel={() => {
                         setSelectedDate(appliedDate);
@@ -116,10 +134,10 @@ export const SidebarComponent = () => {
                     <div className="filter-group">
                         <DataPicker
                             placeholder={
-                                !!params.gender
-                                    ? `${params.gender
+                                !!params.filters.gender
+                                    ? `${params.filters.gender
                                           .charAt(0)
-                                          .toUpperCase()}${params.gender.substring(
+                                          .toUpperCase()}${params.filters.gender.substring(
                                           1
                                       )}`
                                     : "Pick a Gender"
@@ -129,33 +147,31 @@ export const SidebarComponent = () => {
                                 <DropdownMenu>
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                gender: "female",
-                                            });
-                                            changePage({ ...page, current: 1 });
+                                            onFilter({ gender: "female" });
                                         }}
-                                        selected={params.gender === "female"}
+                                        selected={
+                                            params.filters.gender === "female"
+                                        }
                                     >
                                         Female
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                gender: "male",
-                                            });
-                                            changePage({ ...page, current: 1 });
+                                            onFilter({ gender: "male" });
                                         }}
-                                        selected={params.gender === "male"}
+                                        selected={
+                                            params.filters.gender === "male"
+                                        }
                                     >
                                         Male
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            const { gender, ...rest } = params;
-                                            changeParams(rest);
-                                            changePage({ ...page, current: 1 });
+                                            const {
+                                                gender,
+                                                ...rest
+                                            } = params.filters;
+                                            clearFilter(rest);
                                         }}
                                         selected={false}
                                     >
@@ -168,9 +184,9 @@ export const SidebarComponent = () => {
                     <div className="filter-group">
                         <DataPicker
                             placeholder={
-                                !!params.isAlive
+                                !!params.filters.isAlive
                                     ? "Alive"
-                                    : params.hasOwnProperty("isAlive")
+                                    : params.filters.hasOwnProperty("isAlive")
                                     ? "Dead"
                                     : "Pick a Living Status"
                             }
@@ -179,36 +195,32 @@ export const SidebarComponent = () => {
                                 <DropdownMenu>
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                isAlive: true,
-                                            });
-                                            changePage({ ...page, current: 1 });
+                                            onFilter({ isAlive: true });
                                         }}
-                                        selected={!!params.isAlive}
+                                        selected={!!params.filters.isAlive}
                                     >
                                         Alive
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
-                                        onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                isAlive: false,
-                                            });
-                                            changePage({ ...page, current: 1 });
-                                        }}
+                                        onClick={() =>
+                                            onFilter({ isAlive: false })
+                                        }
                                         selected={
-                                            !params.isAlive &&
-                                            params.hasOwnProperty("isAlive")
+                                            !params.filters.isAlive &&
+                                            params.filters.hasOwnProperty(
+                                                "isAlive"
+                                            )
                                         }
                                     >
                                         Dead
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            const { isAlive, ...rest } = params;
-                                            changeParams(rest);
-                                            changePage({ ...page, current: 1 });
+                                            const {
+                                                isAlive,
+                                                ...rest
+                                            } = params.filters;
+                                            clearFilter(rest);
                                         }}
                                         selected={false}
                                     >
@@ -227,35 +239,28 @@ export const SidebarComponent = () => {
                     <div className="filter-group">
                         <DataPicker
                             placeholder={
-                                !!params.region
-                                    ? params.region
+                                !!params.filters.region
+                                    ? params.filters.region
                                     : "Pick a Region"
                             }
                         >
                             <DataPickerDropdown>
                                 <DropdownMenu>
-                                    {regions.map((region) => (
+                                    {regions.map(region => (
                                         <DropdownMenuItem
                                             key={region}
-                                            onClick={() => {
-                                                changeParams({
-                                                    ...params,
-                                                    region,
-                                                });
-                                                changePage({
-                                                    ...page,
-                                                    current: 1,
-                                                });
-                                            }}
+                                            onClick={() => onFilter({ region })}
                                         >
                                             {region}
                                         </DropdownMenuItem>
                                     ))}
                                     <DropdownMenuItem
                                         onClick={() => {
-                                            const { region, ...rest } = params;
-                                            changeParams(rest);
-                                            changePage({ ...page, current: 1 });
+                                            const {
+                                                region,
+                                                ...rest
+                                            } = params.filters;
+                                            clearFilter(rest);
                                         }}
                                         selected={false}
                                     >
@@ -268,9 +273,11 @@ export const SidebarComponent = () => {
                     <div className="filter-group">
                         <DataPicker
                             placeholder={
-                                !!params.hasDiedOut
+                                !!params.filters.hasDiedOut
                                     ? "Current"
-                                    : params.hasOwnProperty("hasDiedOut")
+                                    : params.filters.hasOwnProperty(
+                                          "hasDiedOut"
+                                      )
                                     ? "Extinct"
                                     : "Pick a Living Status"
                             }
@@ -278,28 +285,22 @@ export const SidebarComponent = () => {
                             <DataPickerDropdown>
                                 <DropdownMenu>
                                     <DropdownMenuItem
-                                        onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                hasDiedOut: true,
-                                            });
-                                            changePage({ ...page, current: 1 });
-                                        }}
-                                        selected={!!params.hasDiedOut}
+                                        onClick={() =>
+                                            onFilter({ hasDiedOut: true })
+                                        }
+                                        selected={!!params.filters.hasDiedOut}
                                     >
                                         Current
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
-                                        onClick={() => {
-                                            changeParams({
-                                                ...params,
-                                                hasDiedOut: false,
-                                            });
-                                            changePage({ ...page, current: 1 });
-                                        }}
+                                        onClick={() =>
+                                            onFilter({ hasDiedOut: false })
+                                        }
                                         selected={
-                                            !params.hasDiedOut &&
-                                            params.hasOwnProperty("hasDiedOut")
+                                            !params.filters.hasDiedOut &&
+                                            params.filters.hasOwnProperty(
+                                                "hasDiedOut"
+                                            )
                                         }
                                     >
                                         Extinct
@@ -309,9 +310,8 @@ export const SidebarComponent = () => {
                                             const {
                                                 hasDiedOut,
                                                 ...rest
-                                            } = params;
-                                            changeParams(rest);
-                                            changePage({ ...page, current: 1 });
+                                            } = params.filters;
+                                            clearFilter(rest);
                                         }}
                                         selected={false}
                                     >
@@ -344,8 +344,8 @@ export const SidebarComponent = () => {
                                 size="small"
                                 variant="secondary"
                                 onClick={() => {
-                                    changeParams({});
-                                    changePage({ ...page, current: 1 });
+                                    const empty = {};
+                                    clearFilter(empty);
                                 }}
                             >
                                 Reset
@@ -408,7 +408,7 @@ export const SidebarComponent = () => {
                             isTarget
                             type="number"
                             onChange={() => {}}
-                            value={page.size}
+                            value={params.page.size}
                         >
                             <TextInputIcon name="chevron-down" />
                         </TextInput>
@@ -416,17 +416,17 @@ export const SidebarComponent = () => {
                     <DropdownSource>
                         <DropdownContext>
                             <DropdownMenu>
-                                {items.map((item) => (
+                                {items.map(item => (
                                     <DropdownMenuItem
                                         key={item}
                                         onClick={() =>
                                             changePage({
-                                                ...page,
+                                                ...params.page,
                                                 current: 1,
                                                 size: item,
                                             })
                                         }
-                                        selected={page.size === item}
+                                        selected={params.page.size === item}
                                     >
                                         {item}
                                     </DropdownMenuItem>

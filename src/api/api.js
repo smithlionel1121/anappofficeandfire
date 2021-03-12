@@ -24,10 +24,11 @@ function parseHeaders(res) {
         }, {});
 }
 
-export const getData = async (dataChoice, pageInfo, addParams) => {
-    let url = `https://www.anapioficeandfire.com/api/${dataChoice}?page=${pageInfo.current}&pageSize=${pageInfo.size}`;
-    if (addParams) {
-        for (const [key, value] of Object.entries(addParams)) {
+export const getData = async (dataChoice, { page, filters }) => {
+    const { current, size } = page;
+    let url = `https://www.anapioficeandfire.com/api/${dataChoice}?page=${current}&pageSize=${size}`;
+    if (filters) {
+        for (const [key, value] of Object.entries(filters)) {
             if (value) {
                 url += `&${key}=${value}`;
             }

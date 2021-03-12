@@ -18,16 +18,17 @@ export const HeaderComponent = () => {
         dataChoice,
         toggleSidebar,
         sidebarOpen,
-        page,
+        params,
         changeParams,
-        changePage,
     } = useContext(AppContext);
     const [text, setText] = useState("");
 
-    const onSubmit = (e) => {
+    const onSubmit = e => {
         e.preventDefault();
-        changeParams({ name: text });
-        changePage({ ...page, current: 1 });
+        changeParams({
+            page: { ...params.page, current: 1 },
+            filters: { name: text },
+        });
         setText("");
     };
     let label = `${dataChoice.charAt(0).toUpperCase()}${dataChoice.substring(
@@ -59,7 +60,7 @@ export const HeaderComponent = () => {
                         // inlineLabel
                         placeholder={label}
                         aria-label="Submit"
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={e => setText(e.target.value)}
                         value={text}
                     >
                         <TextInputIcon align="left" name="magnify-glass" />
