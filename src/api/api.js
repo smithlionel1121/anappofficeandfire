@@ -29,9 +29,7 @@ export const getData = async (dataChoice, { page, filters }) => {
     let url = `https://www.anapioficeandfire.com/api/${dataChoice}?page=${current}&pageSize=${size}`;
     if (filters) {
         for (const [key, value] of Object.entries(filters)) {
-            if (value) {
-                url += `&${key}=${value}`;
-            }
+            url += `&${key}=${value}`;
         }
     }
     const res = await fetch(url);

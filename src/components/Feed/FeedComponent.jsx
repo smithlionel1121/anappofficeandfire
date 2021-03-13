@@ -22,34 +22,36 @@ export const FeedComponent = () => {
     const makeKey = url =>
         url.slice(url.lastIndexOf("/", url.lastIndexOf("/") - 1) + 1);
 
+    const noResults = <div>No Results Found</div>;
+
     switch (dataChoice) {
         case "characters":
-            list =
-                Array.isArray(feedResults) &&
-                feedResults.map(result => (
-                    <CharacterCard
-                        character={result}
-                        params={params}
-                        key={makeKey(result.url)}
-                    />
-                ));
+            list = feedResults?.length
+                ? feedResults.map(result => (
+                      <CharacterCard
+                          character={result}
+                          params={params}
+                          key={makeKey(result.url)}
+                      />
+                  ))
+                : noResults;
             break;
         case "houses":
-            list =
-                Array.isArray(feedResults) &&
-                feedResults.map(result => (
-                    <HouseCard house={result} key={makeKey(result.url)} />
-                ));
+            list = feedResults?.length
+                ? feedResults.map(result => (
+                      <HouseCard house={result} key={makeKey(result.url)} />
+                  ))
+                : noResults;
             break;
         case "books":
-            list =
-                Array.isArray(feedResults) &&
-                feedResults.map(result => (
-                    <BookCard book={result} key={makeKey(result.url)} />
-                ));
+            list = feedResults?.length
+                ? feedResults.map(result => (
+                      <BookCard book={result} key={makeKey(result.url)} />
+                  ))
+                : noResults;
             break;
         default:
-            list = <div>No Results</div>;
+            list = noResults;
     }
 
     const display = isLoading ? (

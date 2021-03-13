@@ -14,11 +14,8 @@ import {
 
 // TODO - make sure CharacterCard is expecting the right props!
 export const CharacterCard = ({ character, params }) => {
-    const { name, aliases, gender, culture, playedBy } = character;
-    let isAlive;
-    if (params.hasOwnProperty("isAlive")) {
-        isAlive = params.isAlive;
-    }
+    const { aliases, gender, culture, playedBy, died } = character;
+    const name = character.name ? character.name : aliases[0];
     return (
         <Card
             className="card"
@@ -53,7 +50,15 @@ export const CharacterCard = ({ character, params }) => {
                             <b>Played By:</b> <i>{playedBy}</i>
                         </ListItem>
                     )}
-                    {isAlive && <Lozenge color="terra-form">Is Alive</Lozenge>}
+                    {params.filters.hasOwnProperty("isAlive") ? (
+                        params.filters.isAlive ? (
+                            <Lozenge color="terra-form">Alive</Lozenge>
+                        ) : (
+                            <Lozenge color="critical-mass">
+                                Died: {died}
+                            </Lozenge>
+                        )
+                    ) : null}
                 </List>
             </CardContent>
         </Card>
