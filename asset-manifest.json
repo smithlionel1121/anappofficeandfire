@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/anappoficeandfire/static/css/main.8951f9e0.chunk.css",
-    "main.js": "/anappoficeandfire/static/js/main.662d2ff0.chunk.js",
-    "main.js.map": "/anappoficeandfire/static/js/main.662d2ff0.chunk.js.map",
+    "main.js": "/anappoficeandfire/static/js/main.fb3fb352.chunk.js",
+    "main.js.map": "/anappoficeandfire/static/js/main.fb3fb352.chunk.js.map",
     "runtime-main.js": "/anappoficeandfire/static/js/runtime-main.a136d9e8.js",
     "runtime-main.js.map": "/anappoficeandfire/static/js/runtime-main.a136d9e8.js.map",
     "static/css/2.deed5308.chunk.css": "/anappoficeandfire/static/css/2.deed5308.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.deed5308.chunk.css",
     "static/js/2.c85b24ec.chunk.js",
     "static/css/main.8951f9e0.chunk.css",
-    "static/js/main.662d2ff0.chunk.js"
+    "static/js/main.fb3fb352.chunk.js"
   ]
 }
